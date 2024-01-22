@@ -1,0 +1,121 @@
+---
+import GitHub from "./icons/GitHub.astro"
+import NextJS from "./icons/NextJS.astro"
+import Tailwind from "./icons/Tailwind.astro"
+import LinkButton from "./LinkButton.astro"
+
+const TAGS = {
+  REACT: {
+    name: "React",
+    class: "bg-black text-white",
+  
+  },
+  REDUX: {
+    name: "Redux",
+    class: "bg-[#003159] text-white",
+
+  },
+  NODE: {
+    name: "NodeJS",
+    class: "bg-[#80DCB2] text-white",
+
+  },
+  EXPRESS: {
+    name: "Express",
+    class: "bg-[#A9A9A9] text-white",
+
+  },
+  MONGODB: {
+    name: "MongoDB",
+    class: "bg-[#3EB852] text-white",
+
+  },
+  SASS: {
+    name: "SASS",
+    class: "bg-[#E475E2] text-white",
+
+  },
+}
+const PROJECTS = [
+  {
+    title: "BearBooks",
+    link: "https://bearbooks.netlify.app/",
+    github: "https://github.com/Ryanleary9/BearBooks_Front",
+    image: "/projects/bearbooksss.png",
+    tags: [TAGS.REACT, TAGS.REDUX,TAGS.SASS,TAGS.NODE,TAGS.EXPRESS,TAGS.MONGODB],
+ 
+  },
+  {
+    title: "Pokédax",
+    link: "https://pokedex-two-kohl.vercel.app/",
+    github: "",
+    image: "/projects/pokedax.png",
+    tags: [TAGS.REACT, TAGS.REDUX, TAGS.SASS],
+
+  },
+]
+---
+
+<section class="flex flex-col  gap-y-16">
+  {
+    PROJECTS.map(({ image, title, tags, link, github }) => (
+      <article>
+      
+       <div class={`relative group  `}>
+  <img
+    loading="lazy"
+    class="rounded shadow-2xl shadow-white/10 aspect-video transition duration-500 ease-in-out transform group-hover:blur-md"
+    src={image}
+    alt={`Captura de pantalla del proyecto ${image}`}
+  />
+  <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500 ease-in-out bg-black bg-opacity-0 group-hover:bg-opacity-50">
+    <p class="text-2xl font-bold text-white">{title}</p>
+    <span class="flex">
+      {tags.map((tag) => (
+      <span
+        class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+      >
+        {tag.name}
+      </span>
+    ))}
+    </span>
+</div>
+</div>
+        <footer class="flex gap-x-4 items-end justify-start mt-4">
+          {github && (
+            <LinkButton href={github}>
+              <GitHub class="size-6" />
+              Source
+            </LinkButton>
+          )}
+          <LinkButton href={link}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <>
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M19.5 7a9 9 0 0 0 -7.5 -4a8.991 8.991 0 0 0 -7.484 4" />
+                <path d="M11.5 3a16.989 16.989 0 0 0 -1.826 4" />
+                <path d="M12.5 3a16.989 16.989 0 0 1 1.828 4" />
+                <path d="M19.5 17a9 9 0 0 1 -7.5 4a8.991 8.991 0 0 1 -7.484 -4" />
+                <path d="M11.5 21a16.989 16.989 0 0 1 -1.826 -4" />
+                <path d="M12.5 21a16.989 16.989 0 0 0 1.828 -4" />
+                <path d="M2 10l1 4l1.5 -4l1.5 4l1 -4" />
+                <path d="M17 10l1 4l1.5 -4l1.5 4l1 -4" />
+                <path d="M9.5 10l1 4l1.5 -4l1.5 4l1 -4" />
+              </>
+            </svg>
+            Website
+          </LinkButton>
+        </footer>
+      </article>
+    ))
+  }
+</section>
